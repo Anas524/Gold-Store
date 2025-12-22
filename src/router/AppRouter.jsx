@@ -8,7 +8,7 @@ import Cart from "../pages/Cart";
 
 export default function AppRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,6 +18,6 @@ export default function AppRouter() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
