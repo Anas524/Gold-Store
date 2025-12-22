@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base (white theme) */
+  --g-page: #f3f4f6;        /* page background */
+  --g-surface: #ffffff;    /* cards */
+  --g-surface-soft: #f8fafc;
+
+  /* Text */
+  --g-ink: #0f172a;         /* slate-900 */
+  --g-soft-ink: #475569;    /* slate-600 */
+
+  /* Gold palette */
+  --g-gold-50:  #fff7db;
+  --g-gold-300: #f7d67a;
+  --g-gold-500: #f2c94c;
+  --g-gold-700: #b8841f;
+}
+
+.bg-page { background: var(--g-page); }
+.bg-surface { background: var(--g-surface); }
+.text-ink { color: var(--g-ink); }
+.text-softInk { color: var(--g-soft-ink); }
+
+/* Global styles */
+body {
+  background:
+    radial-gradient(circle at 30% 0%, #145a4a 0, transparent 55%),
+    radial-gradient(circle at 80% 100%, #0b3730 0, #021312 70%);
+  color: var(--g-ink);
+  /* same as ink color */
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Home hero background – fixed full viewport */
+.home-hero {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  /* create stacking context so ::before sits behind content */
+  pointer-events: none;
+}
+
+.home-hero * {
+  pointer-events: auto; /* allow clicks for content inside */
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/Gold-bar-with-tea- cloth-theme.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  /* lower = softer */
+  filter: blur(6px);
+  /* blur the background */
+  animation: heroZoom 18s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes heroZoom {
+  0% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Gold history roller */
+.gold-history-roller {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-history-track {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  animation: gold-track-scroll 30s linear infinite;
+}
+
+.gold-history-roller:hover .gold-history-track {
+  animation-play-state: paused;
+}
+
+.gold-history-frame {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 120px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #fcd56d33, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.45);
+}
+
+.gold-history-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes gold-track-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero signature card entrance */
+.hero-product-shell {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroCardIn 700ms ease-out 0.6s forwards;
+}
+
+@keyframes heroCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero heading + subtitle shadows */
+.hero-title-shadow {
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle-shadow {
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* -------------- GOLD HISTORY – STACKED CARDS -------------- */
+
+.gold-history-stack {
+  width: min(420px, 80vw);
+  height: 260px;
+  position: relative;
+}
+
+/* main card container with fake cards behind it */
+.gold-history-card-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  background: radial-gradient(circle at top,
+      #fef9c3 0%,
+      #fcd34d 35%,
+      #111827 100%);
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.55),
+    0 0 0 1px rgba(148, 163, 184, 0.25);
+  animation: historyCardFloat 6s ease-in-out infinite;
+}
+
+/* subtle stacked cards behind */
+.gold-history-card-shell::before,
+.gold-history-card-shell::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 24px;
+  background: linear-gradient(to bottom right, #020617, #111827);
+  opacity: 0.25;
+  z-index: -1;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.5);
+}
+
+.gold-history-card-shell::before {
+  transform: translate(10px, 14px);
+}
+
+.gold-history-card-shell::after {
+  transform: translate(-10px, 26px);
+  opacity: 0.18;
+}
+
+/* gentle float animation */
+@keyframes historyCardFloat {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+/* slides inside the card */
+.gold-history-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity 0.6s ease-in-out,
+    transform 0.6s ease-in-out;
+}
+
+.gold-history-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Spot ticker bar background --- */
+.spot-ticker-bar {
+  position: relative;
+  z-index: 30;
+  /* deep black gradient that matches navbar */
+  background:
+    /* soft gold glow on the left */
+    radial-gradient(circle at 0% 0%,
+      rgba(244, 212, 122, 0.22) 0%,
+      rgba(0, 0, 0, 0.98) 35%,
+      #000000 70%),
+    /* tiny teal hint on the right side */
+    radial-gradient(circle at 85% 0%,
+      rgba(11, 55, 48, 0.45) 0%,
+      #000000 65%,
+      #000000 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  border: none;
+}
+
+.navbar-header {
+  background:
+    /* soft gold glow on the left */
+    radial-gradient(circle at 0% 0%,
+      rgba(244, 212, 122, 0.22) 0%,
+      rgba(0, 0, 0, 0.98) 35%,
+      #000000 70%),
+    /* tiny teal hint on the right side */
+    radial-gradient(circle at 85% 0%,
+      rgba(11, 55, 48, 0.45) 0%,
+      #000000 65%,
+      #000000 100%);
+  border: none;
+}
