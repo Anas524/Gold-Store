@@ -1,16 +1,45 @@
-# React + Vite
+# Gold-Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack gold and silver e-commerce application developed to provide product browsing, shopping cart management, user authentication, and checkout functionality.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Product Listings:** Browse gold and silver products.
+- **Shopping Cart:** Manage selected products before checkout.
+- **User Authentication:** Support user sign-in and authentication workflows.
+- **Checkout:** Provide a checkout workflow for purchases.
+- **Component-Based Frontend:** Build the user interface using reusable React components.
+- **Backend Integration:** Connect frontend functionality with backend services and APIs.
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend**
+- React.js
+- JavaScript
 
-## Expanding the ESLint configuration
+**Backend**
+- Laravel / PHP
+- Node.js / Express.js
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Database**
+- MySQL
+
+## Project Architecture
+
+The application uses React.js for the frontend and backend technologies for application logic, API communication, and data management.
+
+The exact responsibilities of Laravel and Node.js/Express depend on how the application is implemented.
+
+## Getting Started
+
+Setup instructions will be added after documenting the project's actual frontend and backend structure, dependencies, and environment configuration.
+
+## Project Status
+
+Development project. Refer to the repository for the current implementation.
+
+## Author
+
+Anas Ahamed
+
+- GitHub: [Anas524](https://github.com/Anas524)
